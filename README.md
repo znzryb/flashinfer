@@ -10,17 +10,18 @@ Issue: https://github.com/flashinfer-ai/flashinfer/issues/9396
 
 ## 本地编辑环境
 
-本目录是独立的 uv 项目，使用 Python 3.12 和带代理支持的 Modal SDK。
-编辑器解释器选择本目录的 `.venv/bin/python`；Modal SDK 自带类型信息。
+本地统一使用外层 FlashInfer 根目录的 `.venv`，Modal SDK 安装在该环境中。
+根目录 `.vscode/` 按 dotfiles 的 Python 项目模板配置，并指向根目录 `.venv`。
+本复现分支仅保存脚本和复现材料，不单独管理 Python 项目或虚拟环境。
+
+在外层 FlashInfer 根目录运行：
 
 ```bash
-uv sync --locked
-uv run modal --version
+.venv/bin/modal --version
+.venv/bin/modal run local-repro/issue-9396/repro.py
 ```
 
-编写完成后，在本目录运行 `uv run modal run repro.py` 会启动云端任务。
-本地安装 SDK 和检查版本不会申请 GPU。
-本地 `.venv` 不进入 Git；`pyproject.toml`、`uv.lock` 和 `.python-version` 保存环境配置。
+第二条命令会启动 Modal 云端任务。
 
 ## 建议的编写顺序
 
